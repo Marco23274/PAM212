@@ -4,3 +4,4 @@ const SaludoPersonalizado=(nombre, edad) => {
     
 }
 console.log(SaludoPersonalizado("Joel", 30));
+
