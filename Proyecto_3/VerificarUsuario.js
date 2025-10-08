@@ -20,7 +20,7 @@ VerificarUsuario("Josue")
 
 
 console.log("Verificando usuario...");
-console.log("Usuario verificado.");
+
         
 
 
