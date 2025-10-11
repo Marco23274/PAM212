@@ -1,31 +1,8 @@
-//Import:Zona de import
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View,} from 'react-native';
-import React,{ useState } from 'react';
+import ContadorScreens from "./Screens/ContadorScreens";
 
-//Main:zona de los componentes
-export default function App() {
-  const[contador,setContador]=useState(0);
-  
-  return (
-    <View style={styles.container}>
-      <Text>Picale ahi, veras que risas</Text>
-      <Text>Contador:{contador}</Text>
+export default function App(){
 
-      <Button title = "Sumale" onPress={()=>setContador(contador+1)} />
-      <Button title= "quitale" onPress={()=>setContador(contador-1)} /> 
-      <Button title= "reiniciar" onPress={()=>setContador(contador==0)}/>
-      <StatusBar style="auto" />
-    </View>
+  return(
+    <ContadorScreens></ContadorScreens>
   );
 }
-
-//Estilos:zona de estilos
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
