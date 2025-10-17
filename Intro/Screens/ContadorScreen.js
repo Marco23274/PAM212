@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View,} from 'react-native';
 import React,{ useState } from 'react';
 
 //Main:zona de los componentes
-export default function App() {
+export default function ContadorScreen() {
   const[contador,setContador]=useState(0);
   
   return (
