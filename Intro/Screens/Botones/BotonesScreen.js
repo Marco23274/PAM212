@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import SwitchScreen from './SwitchScreen' // adapta el nombre si tu archivo se llama distinto
-
+import SwitchScreen from './SwitchScreen'
 export default function BotonesScreen() {
   const info = [
     { id: 1, title: 'Mantener la pantalla encendida', value: false },
     { id: 2, title: 'Ajustar brillo automático', value: true },
     { id: 3, title: 'WiFi', value: false },
-    { id: 4, title: 'Bluetooth', value: false }
-  ]
+    { id: 4, title: 'Bluetooth', value: false }  ]
 
   const Item = ({ title, value }) => {
     return (
