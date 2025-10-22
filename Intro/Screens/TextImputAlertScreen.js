@@ -28,16 +28,12 @@ export default function TextScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Formulario de ejemplo</Text>
-
-      {/* Input para el nombre */}
       <TextInput
         style={styles.input}
         placeholder="Escribe tu nombre"
         value={nombre}
         onChangeText={setNombre}
       />
-            {/* Input con teclado numérico */}
-      {/* keyboardType: 'numeric' hace que el teclado muestre solo números */}
       <TextInput
         style={styles.input}
         placeholder="Ingresa tu teléfono"
@@ -45,9 +41,6 @@ export default function TextScreen() {
         onChangeText={setTelefono}
         keyboardType="numeric"
       />
-
-
-      {/* Input para contraseña */}
       <TextInput
         style={styles.input}
         placeholder="Escribe tu contraseña"
@@ -55,8 +48,6 @@ export default function TextScreen() {
         onChangeText={setContraseña}
         secureTextEntry={true}
       />
-
-      {/* Input con varias líneas para comentario */}
       <TextInput
         style={[styles.input, { height: 100, textAlignVertical: 'top' }]} 
         placeholder="Escribe un comentario"
@@ -65,17 +56,11 @@ export default function TextScreen() {
         multiline={true}
         numberOfLines={4}
       />
-
-      {/* Botón para enviar los datos */}
       <Button title="Enviar" onPress={enviarDatos} />
-
-      {/* Mensaje que cambia dinámicamente */}
       <Text style={styles.mensaje}>{mensaje}</Text>
     </View>
   );
 }
-
-// Estilos de la interfaz
 const styles = StyleSheet.create({
   container:{
     flex:1,

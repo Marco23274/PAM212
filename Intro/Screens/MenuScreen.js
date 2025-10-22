@@ -4,7 +4,7 @@ import ContadorScreen from './ContadorScreen';
 import BotonesScreen from './Botones/BotonesScreen';
 import ButtonsSwitchScreen from './ButtonsSwitchScreen';
 import TextImputAlertScreen from './TextImputAlertScreen';
-import ImageBackgroungSlapshScreen from './ImageBackgroungSlapshScreen';
+import SplashScreenPro from './ImageBackgroungSlapshScreen';
 import ScrollViewScreen from './ScrollViewScreen';
 import ActivityIndicatorScreen from './ActivityIndicatorScreen';
 import FlatListSectionListScreen from './FlatListSectionListScreen';
@@ -25,7 +25,7 @@ export default function MenuScreen() {
     case "text,imputYalert":
       return <TextImputAlertScreen />;
     case "imagebackgroundYslapshscreen":
-      return <ImageBackgroungSlapshScreen />;
+      return <SplashScreenPro />;
     case "scrollview":
       return <ScrollViewScreen />;
     case "activityindicator":
