@@ -49,5 +49,9 @@ const styles = StyleSheet.create({
   item: { height: 55, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
   itemBox: { height: 100, flex: 1, justifyContent: 'center', alignItems: 'flex-start' },
   itemtitle: { fontSize: 15, fontWeight: '300', color: '#383838' },
-  switch: { width: 70, height: '100%', justifyContent: 'center', alignItems: 'center' }
+  switch: { width: 70, height: '100%', justifyContent: 'center', alignItems: 'center' },
+   container: {
+    backgroundColor: "#007bffff",
+  },
+  
 })

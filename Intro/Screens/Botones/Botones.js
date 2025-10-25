@@ -5,7 +5,7 @@ import React from 'react';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#ffffffff", // Color de fondo de toda la pantalla
+    backgroundColor: "#0e0561ff", // Color de fondo de toda la pantalla
     alignItems: "center",        // Centra horizontalmente los elementos dentro del container
     justifyContent: "flex-start",// Alinea verticalmente los elementos desde arriba
     padding: 20,                 // Espacio interno alrededor del contenido

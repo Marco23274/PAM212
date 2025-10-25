@@ -5,11 +5,13 @@ import BotonesScreen from './Botones/BotonesScreen';
 import ButtonsSwitchScreen from './ButtonsSwitchScreen';
 import TextImputAlertScreen from './TextImputAlertScreen';
 import SplashScreenPro from './ImageBackgroungSlapshScreen';
-import ScrollViewScreen from './ScrollViewScreen';
+import SimpleScrollView from './ScrollViewVerticalScreen';
+import SimpleScrollViewHorizontal from './ScrollViewHorizontalScreen';
 import ActivityIndicatorScreen from './ActivityIndicatorScreen';
 import FlatListSectionListScreen from './FlatListSectionListScreen';
 import ModalScreen from './ModalScreen';
 import BottonSheetScreen from './BottonSheetScreen';
+import Repaso1 from "./Repaso1";
 
 // Main: zona de los componentes
 export default function MenuScreen() {
@@ -27,7 +29,9 @@ export default function MenuScreen() {
     case "imagebackgroundYslapshscreen":
       return <SplashScreenPro />;
     case "scrollview":
-      return <ScrollViewScreen />;
+      return <SimpleScrollView />;
+    case "scrollviewHorizontal":
+      return <SimpleScrollViewHorizontal />;
     case "activityindicator":
       return <ActivityIndicatorScreen />;
     case "flatlistYsectionlist":
@@ -36,6 +40,8 @@ export default function MenuScreen() {
       return <ModalScreen />;
     case "bottomsheet":
       return <BottonSheetScreen />;
+    case "repaso":  
+      return <Repaso1/>
     case "menu":
     default:
       return (
@@ -48,10 +54,12 @@ export default function MenuScreen() {
             <Button onPress={() => setScreen("text,imputYalert")} title="Pract: Text, Imput & Alert" color={"rgba(29, 116, 87, 1)"} />
             <Button onPress={() => setScreen("imagebackgroundYslapshscreen")} title="Pract: ImageBackgroung & SlapshScreen" color={"rgba(191, 87, 39, 1)"} />
             <Button onPress={() => setScreen("scrollview")} title="Pract: ScrollView" color={"rgba(81, 198, 221, 1)"} />
+            <Button onPress={() => setScreen("scrollviewHorizontal")} title="Pract: ScrollViewHorizontal" color={"rgba(81, 198, 221, 1)"} />
             <Button onPress={() => setScreen("activityindicator")} title="Pract:ActivityIndicator" color={"rgba(86, 15, 43, 1)"} />
             <Button onPress={() => setScreen("flatlistYsectionlist")} title="Pract: FlatList y Section List" color={"rgba(172, 42, 42, 1)"} />
             <Button onPress={() => setScreen("modal")} title="Pract: Modal" color={"rgba(161, 26, 26, 1)"} />
             <Button onPress={() => setScreen("bottomsheet")} title="Pract: Bottom Sheet" color={"rgba(187, 187, 58, 1)"} />
+            <Button onPress={() => setScreen("repaso")} title="Pract: Repaso" color={"rgba(103, 6, 51, 1)"} />
           </View>
         </View>
       );
@@ -59,6 +67,6 @@ export default function MenuScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0b3155ff' },
   title: { fontSize: 18, fontWeight: 'bold', marginBottom: 12 }
 })
