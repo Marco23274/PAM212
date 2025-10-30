@@ -15,6 +15,7 @@ export default function Repaso1(){
 
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
+  const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;  // Updated regex for Gmail
   const [mensaje, setMensaje] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const info = [{ id: 1, title: 'Acepto todos los terminos y condiciones', value: false },]
@@ -62,17 +63,29 @@ export default function Repaso1(){
       return () => clearTimeout(timer);
     })();
   }, []);
-
+  
   const rotateInterpolate = rotateLogo.interpolate({
     inputRange: [0, 1],
     outputRange: ["10deg", "360deg"],
   });
 
   const enviarDatos = () => {
-    if (nombre.trim() === '' || correo.trim() === '' || !termsAccepted) {
+    if (nombre.trim() === '') {
       Alert.alert('Error', 'Por favor completa todos los campos y acepta los términos');
       alert("Error, Debe rellenar todos los campos y aceptar los términos")
-      setMensaje('Faltan campos por llenar o términos no aceptados');
+      setMensaje('Faltan campos por llenar "nombre"');
+    } else if (correo.trim()=='') {
+      Alert.alert('Error', 'Debe llenar todos los campos');
+      alert("Error, Datos no enviados ")
+      setMensaje('Faltan campos por llenar "correo"');
+    } else if (!regex.test(correo)) {
+      Alert.alert('Error', 'Por favor ingrese un correo de Gmail válido');
+      alert("Error, El correo debe ser de Gmail")
+      setMensaje('El correo debe ser una dirección de Gmail válida');
+    } else if (!termsAccepted) {
+      Alert.alert('Error', 'Debe llenar todos los campos');
+      alert("Error, Datos no enviados ")
+      setMensaje('Falta aceptar los terminos y condiciones');
     } else {
       Alert.alert('¡Éxito!', 'Datos enviados correctamente');
       alert("Exito, Datos enviados correctamente")
