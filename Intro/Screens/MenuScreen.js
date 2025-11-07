@@ -12,6 +12,8 @@ import FlatListSectionListScreen from './FlatListSectionListScreen';
 import ModalScreen from './ModalScreen';
 import BottonSheetScreen from './BottonSheetScreen';
 import Repaso1 from "./Repaso1";
+import TransaccionesScreen from './Transacciones/TransaccionesScreen';
+import CrudScreen from './Transacciones/CRUDScreen';
 
 // Main: zona de los componentes
 export default function MenuScreen() {
@@ -42,6 +44,10 @@ export default function MenuScreen() {
       return <BottonSheetScreen />;
     case "repaso":  
       return <Repaso1/>
+    case "Transacciones":
+      return <TransaccionesScreen/>
+      case "CRUD Transacciones":
+      return <CrudScreen/>
     case "menu":
     default:
       return (
@@ -60,6 +66,8 @@ export default function MenuScreen() {
             <Button onPress={() => setScreen("modal")} title="Pract: Modal" color={"rgba(161, 26, 26, 1)"} />
             <Button onPress={() => setScreen("bottomsheet")} title="Pract: Bottom Sheet" color={"rgba(187, 187, 58, 1)"} />
             <Button onPress={() => setScreen("repaso")} title="Pract: Repaso" color={"rgba(103, 6, 51, 1)"} />
+            <Button onPress={() => setScreen("Transacciones")} title="transacciones" color={"rgba(103, 6, 51, 1)"}/>
+            <Button onPress={() => setScreen("CRUD Transacciones")} title="CRUD transacciones" color={"rgba(103, 6, 51, 1)"}/> 
           </View>
         </View>
       );
