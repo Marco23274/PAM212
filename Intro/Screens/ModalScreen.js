@@ -28,7 +28,7 @@ export default function ModalScreen() {
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>¡Hola! soy un Modal.</Text>
-            <Button title="Cerrar" onPress={cerrarModal} /> {/* PROP onPress: cierra modal */}
+            <Button title="Cerrar" onPress={cerrarModal} /> 
           </View>
         </View>
       </Modal>
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 16,
   },
-});
+}); 
