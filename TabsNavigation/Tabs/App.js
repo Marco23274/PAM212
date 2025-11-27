@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from './TabsScreens/Home';
 import Profile from './TabsScreens/Profile';
 import Settings from './TabsScreens/Settings';
-import UserDetails from './TabsScreens/UserDetails'; // Importa la nueva pantalla
+import UserDetails from './TabsScreens/UserDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
