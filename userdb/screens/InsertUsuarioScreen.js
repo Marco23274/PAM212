@@ -10,6 +10,7 @@ export default function InsertUsuarioScreen() {
   const [nombre, setNombre] = useState('');
   const [loading, setLoading] = useState(true);
   const [guardando, setGuardando] = useState(false);
+  const [editandoId, setEditandoId] = useState(null);
 
   //Cargar usuarios desde la BD
   const cargarUsuarios = useCallback(async () => {
@@ -41,14 +42,21 @@ export default function InsertUsuarioScreen() {
     };
   }, [cargarUsuarios]);
 
-  // Agregar nuevo usuario
-  const handleAgregar = async () => {
+  // Agregar o actualizar usuario
+  const handleGuardar = async () => {
     if (guardando) return;
     try {
       setGuardando(true);
-      const usuarioCreado = await controller.crearUsuario(nombre);
-      Alert.alert('Usuario Creado', `"${usuarioCreado.nombre}" guardado con ID: ${usuarioCreado.id}`);
+      if (editandoId) {
+        await controller.actualizarUsuario(editandoId, nombre);
+        Alert.alert('Usuario Actualizado', `Usuario actualizado correctamente`);
+        setEditandoId(null);
+      } else {
+        const usuarioCreado = await controller.crearUsuario(nombre);
+        Alert.alert('Usuario Creado', `"${usuarioCreado.nombre}" guardado con ID: ${usuarioCreado.id}`);
+      }
       setNombre('');
+      await cargarUsuarios();
     } catch (error) {
       Alert.alert('Error', error.message);
     } finally {
@@ -56,12 +64,46 @@ export default function InsertUsuarioScreen() {
     }
   };
 
+  // Eliminar usuario
+  const handleEliminar = async (id) => {
+    Alert.alert(
+      'Eliminar Usuario',
+      '¿Seguro que deseas eliminar este usuario?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Eliminar',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await controller.eliminarUsuario(id);
+              await cargarUsuarios();
+              Alert.alert('Usuario eliminado');
+              if (editandoId === id) {
+                setEditandoId(null);
+                setNombre('');
+              }
+            } catch (error) {
+              Alert.alert('Error', error.message);
+            }
+          }
+        }
+      ]
+    );
+  };
+
+  // Seleccionar usuario para editar
+  const handleEditar = (usuario) => {
+    setEditandoId(usuario.id);
+    setNombre(usuario.nombre);
+  };
+
   const renderUsuario = ({item, index}) => (
-    <View style = {styles.userItem}>
-      <View style = {styles.userNumber}>
+    <View style={styles.userItem}>
+      <View style={styles.userNumber}>
         <Text style={styles.userNumberText}>{index + 1}</Text>
       </View>
-      <View style = {styles.userInfo}>
+      <View style={styles.userInfo}>
         <Text style={styles.userName}>{item.nombre}</Text>
         <Text style={styles.userId}>{item.id}</Text>
         <Text style={styles.userDate}>
@@ -73,6 +115,14 @@ export default function InsertUsuarioScreen() {
             })
           }
         </Text>
+      </View>
+      <View style={styles.userActions}>
+        <TouchableOpacity style={styles.actionButton} onPress={() => handleEditar(item)}>
+          <Text style={styles.actionText}>Editar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton} onPress={() => handleEliminar(item.id)}>
+          <Text style={[styles.actionText, { color: 'red' }]}>Eliminar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -87,7 +137,7 @@ export default function InsertUsuarioScreen() {
       </Text>
 
       <View style={styles.insertSection}>
-        <Text style={styles.sectionTitle}> Insertar Usuario</Text>
+        <Text style={styles.sectionTitle}>{editandoId ? 'Editar Usuario' : 'Insertar Usuario'}</Text>
 
         <TextInput
           style={styles.input}
@@ -99,15 +149,23 @@ export default function InsertUsuarioScreen() {
 
         <TouchableOpacity
           style={[styles.button, guardando && styles.buttonDisabled]}
-          onPress={ handleAgregar }
+          onPress={handleGuardar}
           disabled={guardando} >
 
           <Text style={styles.buttonText}>
-            {guardando ? ' Guardando...' : 'Agregar Usuario'}
+            {guardando ? (editandoId ? 'Actualizando...' : 'Guardando...') : (editandoId ? 'Actualizar Usuario' : 'Agregar Usuario')}
           </Text>
 
         </TouchableOpacity>
 
+        {editandoId && (
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#ccc', marginTop: 8 }]}
+            onPress={() => { setEditandoId(null); setNombre(''); }}
+          >
+            <Text style={[styles.buttonText, { color: '#333' }]}>Cancelar edición</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <View style={styles.selectSection}>
@@ -247,6 +305,7 @@ const styles = StyleSheet.create({
   },
   userItem: {
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#f9f9f9',
     padding: 15,
     borderRadius: 8,
@@ -285,6 +344,21 @@ const styles = StyleSheet.create({
   userDate: {
     fontSize: 12,
     color: '#666',
+  },
+  userActions: {
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
+  actionButton: {
+    marginHorizontal: 4,
+    padding: 6,
+    borderRadius: 6,
+    backgroundColor: '#e0e0e0',
+  },
+  actionText: {
+    fontSize: 12,
+    color: '#007AFF',
+    fontWeight: 'bold',
   },
   emptyContainer: {
     alignItems: 'center',
